@@ -140,8 +140,8 @@ module.exports = function(RED) {
 
       // At this point, `inp` SHOULD be a Date object and safe to pass to moment.js
 
-      if ( !node.inTz ) { node.inTz = hostTz; }
-      if ( !node.outTz ) { node.outTz = node.inTz; }
+      node.inTz = hostTz;
+      node.outTz = node.inTz;
 
       // Get a Moment.JS date/time - NB: the result might not be
       //  valid since the input might not parse as a date/time
@@ -153,7 +153,7 @@ module.exports = function(RED) {
       if ( dtHack !== '' ) { mDT.add(dtHack); }
 
       // JK: Added OS locale lookup
-      if ( !node.locale ) { node.locale = hostLocale; }
+      node.locale = hostLocale;
       // JK: Add a trap to Jaques44's locale code in case the output locale string is invalid
       try {
         // Jacques44 - set locale for localised output formats
